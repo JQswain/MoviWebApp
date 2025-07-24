@@ -19,6 +19,13 @@ class DataManager():
         movies = Movie.query.filter_by(user_id=user_id).all()
         return movies
 
+
+    def get_movie(self, movie_id, user_id):
+        """Returns a single movie for a user with the given id"""
+        movie = Movie.query.filter_by(movie_id=movie_id, user_id=user_id).first()
+        return movie
+
+
     def add_movie(self, movie: Movie):
         """Adds a movie to the database expects that is already a Movie object, created with the info from the app.py"""
         if not isinstance(movie, Movie):
@@ -26,6 +33,7 @@ class DataManager():
         db.session.add(movie)
         db.session.commit()
         return f"{movie} Added Successfully"
+
 
     def update_movie(self, movie_id, new_title):
         """Updates a movie with the given id, if it doesn't exist in the database returns None"""
@@ -35,6 +43,7 @@ class DataManager():
             db.session.commit()
             return movie
         return None
+
 
     def delete_movie(self, movie_id):
         """Deletes a movie from the database, Returns TRue if movie is there and it deletes successfully,

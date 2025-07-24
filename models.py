@@ -13,6 +13,10 @@ class User(db.Model):
 
     movies = db.relationship('Movie', backref='user', lazy=True)
 
+    def __repr__(self):
+        return '<User %r>' % self.name
+
+
 class Movie(db.Model):
     """Class that defines a Movie for the database,
     information is gathered by an API and added to the object upon initialization"""
@@ -30,4 +34,9 @@ class Movie(db.Model):
     poster_url = db.Column(db.String(100), nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return (f"<Movie {self.title}>"
+                f"<Director {self.director}>"
+                f"<Year {self.year}>")
 
