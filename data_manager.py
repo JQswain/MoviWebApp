@@ -14,6 +14,11 @@ class DataManager():
         users = User.query.all()
         return users
 
+    def get_user(self, user_id):
+        """Returns a user by id"""
+        user = db.session.get(User, user_id)
+        return user
+
     def get_movies(self, user_id):
         """Returns a list of all movies for a user with the given id"""
         movies = Movie.query.filter_by(user_id=user_id).all()
@@ -22,7 +27,7 @@ class DataManager():
 
     def get_movie(self, movie_id, user_id):
         """Returns a single movie for a user with the given id"""
-        movie = Movie.query.filter_by(movie_id=movie_id, user_id=user_id).first()
+        movie = db.session.get(Movie, movie_id)
         return movie
 
 

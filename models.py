@@ -4,11 +4,10 @@ db = SQLAlchemy()
 
 class User(db.Model):
     """Class that defines a User for the database"""
-    def __init__(self, id, name):
-        self.id = id
+    def __init__(self, name):
         self.name = name
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String(100), nullable=False)
 
     movies = db.relationship('Movie', backref='user', lazy=True)
@@ -20,11 +19,12 @@ class User(db.Model):
 class Movie(db.Model):
     """Class that defines a Movie for the database,
     information is gathered by an API and added to the object upon initialization"""
-    def __init__(self, title, director, year, poster_url):
+    def __init__(self, title, director, year, poster_url, user_id):
         self.title = title
         self.director = director
         self.year = year
         self.poster_url = poster_url
+        self.user_id = user_id
 
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
