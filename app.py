@@ -4,7 +4,7 @@ from flask import Flask, render_template, redirect, request, url_for
 from data_manager import DataManager
 from models import Movie, User, db
 import requests
-from sqlalchemy.exc import IntegrityError, NoResultFound
+
 
 import os
 from dotenv import load_dotenv
