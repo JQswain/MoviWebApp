@@ -36,7 +36,7 @@ def create_user():
     The server receives the new user info, adds it to the database, then redirects back to '/'"""
     new_user = request.form.get('name')
     data_manager.create_user(new_user)
-    return redirect(url_for('index'))#only temporarily returning a string fix later with a jinja template
+    return redirect(url_for('index'))
 
 @app.route('/users/<int:user_id>/movies', methods=['GET'])
 def user_movies(user_id):
